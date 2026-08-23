@@ -1,22 +1,43 @@
-from utils import load_data, load_template, save_data
+from utils import (
+    load_template,
+    load_notes,
+    add_note,
+    delete_note,
+    get_note,
+    update_note
+)
 
 def index():
     note_template = load_template('components/note.html')
+
     notes_li = [
-        note_template.format(title=dados['titulo'], details=dados['detalhes'])
-        for dados in load_data('notes.json')
+        note_template.format(
+    id=dados[0],
+    title=dados[1],
+    details=dados[2]
+)
+        for dados in load_notes()
     ]
+
     notes = '\n'.join(notes_li)
 
     return load_template('index.html').format(notes=notes)
+
 def submit(titulo, detalhes):
-    notes = load_data('notes.json')
+    add_note(titulo, detalhes)
 
-    nova_nota = {
-        'titulo': titulo,
-        'detalhes': detalhes
-    }
+def delete(id):
+    delete_note(id)
 
-    notes.append(nova_nota)
+def edit(id):
+    note = get_note(id)
 
-    save_data('notes.json', notes)
+    return load_template('update.html').format(
+        id=note[0],
+        title=note[1],
+        details=note[2]
+    )
+
+
+def update(id, titulo, detalhes):
+    update_note(id, titulo, detalhes)

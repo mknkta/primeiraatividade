@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar</title>
+</head>
+<body>
+
+<form action="/update" method="POST">
+
+    <input type="hidden" name="id" value="{id}">
+
+    <label>Título</label>
+    <input type="text" name="titulo" value="{title}">
+
+    <label>Detalhes</label>
+    <input type="text" name="detalhes" value="{details}">
+
+    <input type="submit" value="Salvar">
+</form>
+
+<a href="/">Cancelar</a>
+
+</body>
+</html>
