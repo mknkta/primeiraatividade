@@ -99,7 +99,7 @@ def update_note(id, titulo, detalhes):
 
     connection.commit()
     connection.close()
-create_database()
+
 
 def favorite_note(id):
     connection = sqlite3.connect('banco.db')

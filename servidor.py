@@ -1,9 +1,10 @@
 from flask import Flask, render_template_string, request, redirect
 import views
+from utils import create_database
 
 
 app = Flask(__name__)
-
+create_database()
 # Configurando a pasta de arquivos estáticos
 app.static_folder = 'static'
 
