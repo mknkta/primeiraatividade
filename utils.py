@@ -41,7 +41,7 @@ def load_notes():
     cursor = connection.cursor()
 
     cursor.execute(
-        'SELECT id, title, content, favorite FROM note ORDER BY favorite DESC, id DESC'
+        'SELECT id, title, content, favorite FROM note ORDER BY favorite DESC, id ASC'
     )
 
     notes = cursor.fetchall()
@@ -119,4 +119,3 @@ def favorite_note(id):
 
     connection.commit()
     connection.close()
-    
