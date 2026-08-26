@@ -4,20 +4,22 @@ from utils import (
     add_note,
     delete_note,
     get_note,
-    update_note
+    update_note,
+    favorite_note
 )
 
 def index():
     note_template = load_template('components/note.html')
 
     notes_li = [
-        note_template.format(
-    id=dados[0],
-    title=dados[1],
-    details=dados[2]
-)
-        for dados in load_notes()
-    ]
+    note_template.format(
+        id=dados[0],
+        title=dados[1],
+        details=dados[2],
+        star='★' if dados[3] else '☆'
+    )
+    for dados in load_notes()
+]
 
     notes = '\n'.join(notes_li)
 
@@ -41,3 +43,6 @@ def edit(id):
 
 def update(id, titulo, detalhes):
     update_note(id, titulo, detalhes)
+
+def favorite(id):
+    favorite_note(id)

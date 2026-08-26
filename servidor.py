@@ -36,5 +36,11 @@ def update():
 
     views.update(id, titulo, detalhes)
     return redirect('/')
+
+@app.route('/favorite/<int:id>')
+def favorite(id):
+    views.favorite(id)
+    return redirect('/')
+
 if __name__ == '__main__':
     app.run(debug=True) 

@@ -26,6 +26,13 @@ def create_database():
         )
     ''')
 
+    try:
+        cursor.execute(
+            'ALTER TABLE note ADD COLUMN favorite INTEGER DEFAULT 0'
+        )
+    except sqlite3.OperationalError:
+        pass
+
     connection.commit()
     connection.close()
 
@@ -33,7 +40,10 @@ def load_notes():
     connection = sqlite3.connect('banco.db')
     cursor = connection.cursor()
 
-    cursor.execute('SELECT id, title, content FROM note')
+    cursor.execute(
+        'SELECT id, title, content, favorite FROM note ORDER BY favorite DESC, id DESC'
+    )
+
     notes = cursor.fetchall()
 
     connection.close()
@@ -90,3 +100,23 @@ def update_note(id, titulo, detalhes):
     connection.commit()
     connection.close()
 create_database()
+
+def favorite_note(id):
+    connection = sqlite3.connect('banco.db')
+    cursor = connection.cursor()
+
+    cursor.execute(
+        '''
+        UPDATE note
+        SET favorite = CASE
+            WHEN favorite = 0 THEN 1
+            ELSE 0
+        END
+        WHERE id = ?
+        ''',
+        (id,)
+    )
+
+    connection.commit()
+    connection.close()
+    
