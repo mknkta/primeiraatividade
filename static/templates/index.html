@@ -1,19 +1,30 @@
+<!-- PÁGINA INICIAL. Comentário em HTML = entre "menos-menos" como esta linha. Não aparece na tela. -->
+<!-- ATENÇÃO: este arquivo passa por .format() do Python, então chaves simples são "buracos" a preencher. -->
 <body>
 
+<!-- Mostra a logo. As chaves duplicadas viram chaves simples depois do .format() e depois o Flask (Jinja) troca url_for pelo caminho real. -->
 <img src="{{{{ url_for('static', filename='img/logo-getit.png') }}}}">
+<!-- p = parágrafo de texto -->
 <p>Como o Post-it, mas com outro verbo</p>
 
+<!-- Formulário. action = para onde enviar (endereço /submit). method POST = envia escondido, usado para criar coisas. -->
 <form action="/submit" method="POST">
+  <!-- label = texto que descreve o campo. for liga ao id do campo (clicar no texto seleciona o campo). -->
   <label for="titulo">Título</label>
+  <!-- input type text = caixinha de texto de uma linha. name = nome com que o Python recebe o valor (request.form.get('titulo')). -->
   <input id="titulo" type="text" name="titulo" />
 
   <label for="detalhes">Detalhes</label>
+  <!-- Sem type, o input é texto por padrão. name detalhes = request.form.get('detalhes'). -->
   <input id="detalhes" name="detalhes" />
 
+  <!-- Botão que envia o formulário. -->
   <input type="submit" />
 </form>
 
+<!-- ul = lista com marcadores (unordered list). Cada item li dentro dela vem do note.html. -->
 <ul>
+<!-- Buraco notes: o views.py troca pelo HTML de todas as notas juntas. -->
 {notes}
 </ul>
 

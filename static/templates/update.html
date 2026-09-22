@@ -1,24 +1,36 @@
+<!-- TELA DE EDITAR. Os buracos entre chaves (id, title, details) são preenchidos pelo views.edit() com .format(). -->
+<!-- Diz ao navegador que isto é HTML5 -->
 <!DOCTYPE html>
+<!-- html = raiz de tudo -->
 <html>
+<!-- head = informações da página (não aparecem no corpo) -->
 <head>
+    <!-- Codificação de caracteres: permite acentos. -->
     <meta charset="UTF-8">
+    <!-- Título que aparece na aba do navegador. -->
     <title>Editar</title>
 </head>
+<!-- body = o que aparece na tela -->
 <body>
 
+<!-- Ao enviar, vai por POST para /update (servidor.py função update). -->
 <form action="/update" method="POST">
 
+    <!-- Campo escondido: o usuário não vê, mas envia o id da nota para sabermos QUAL nota alterar. value recebe o id. -->
     <input type="hidden" name="id" value="{id}">
 
     <label>Título</label>
+    <!-- value = texto que já vem escrito na caixa (título atual). -->
     <input type="text" name="titulo" value="{title}">
 
     <label>Detalhes</label>
     <input type="text" name="detalhes" value="{details}">
 
+    <!-- Botão que envia o formulário. -->
     <button type="submit">Salvar</button>
 </form>
 
+<!-- Link (a) que volta para a página inicial sem salvar. href = destino. -->
 <a href="/" name="edit_cancel">Cancelar</a>
 
 </body>

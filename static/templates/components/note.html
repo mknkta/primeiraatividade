@@ -1,7 +1,12 @@
+<!-- MOLDE DE UMA NOTA. O views.index() repete este molde uma vez para cada nota, trocando id, title e details. -->
 <li>
+  <!-- h3 = título pequeno; mostra o título da nota -->
   <h3>{title}</h3>
+  <!-- p = parágrafo; mostra o conteúdo da nota -->
   <p>{details}</p>
 
+  <!-- Link para /update/ID (abre a tela de editar). name é só um rótulo (útil para testes automáticos). -->
   <a href="/update/{id}" name="edit_button">Editar</a>
+  <!-- Link para /delete/ID (apaga a nota). -->
   <a href="/delete/{id}" name="delete_button">Excluir</a>
 </li>
